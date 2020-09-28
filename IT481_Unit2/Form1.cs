@@ -17,7 +17,7 @@ namespace IT481_Unit2
         private string password;
         private string server;
         private string database;
-
+        private long num1;
 
         public Form1()
         {
@@ -48,12 +48,30 @@ namespace IT481_Unit2
 
             if (user.Length == 0 || password.Length == 0 ||
                 server.Length == 0 || database.Length == 0)
+
+
             {
                 isValid = false;
                 MessageBox.Show("You must enter username, password, server, and database values");
 
             }
+            else if (password.Length < 6)
+            {
 
+                isValid = false;
+                MessageBox.Show("Password leangth must be 6 characters or more");
+            }
+            else
+            {
+                if(!long.TryParse(password, out num1))
+                {
+                    isValid = false;
+                    MessageBox.Show("You must enter numbers for the password");
+
+                }
+            }
+
+            
             if (isValid)
             {
                 controller = new Controller("Server = " + server + "\\SQLEXPRESS;" +
@@ -125,6 +143,11 @@ namespace IT481_Unit2
         }
 
         private void button7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
